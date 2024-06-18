@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
-import Hamburger from '../assets/Images/hamburger.svg';
 import finder from '../assets/Images/finder.svg';
 import Search from '../assets/Images/search_icon.svg';
+import LoginComponent from './LoginComponent';
+import LoginIcon from '../assets/Images/login_icon.svg'; // Ensure this path is correct
 
 const Header = styled.div`
   color: white;
@@ -53,6 +54,7 @@ const SearchInput = styled.input`
 
 function HeaderComponent({ setRecipeList }) {
   const [timeoutId, updateTimeoutId] = useState();
+  const [user, setUser] = useState(null); // New state to manage logged-in user
 
   const fetchRecipe = async (searchString) => {
     const App_Id = '0537ec5f'; 
@@ -88,9 +90,9 @@ function HeaderComponent({ setRecipeList }) {
         <SearchIcon src={Search} />
         <SearchInput placeholder="Search Recipe" onChange={onTextChange} />
       </SearchComponent>
+      <LoginComponent icon={LoginIcon} setUser={setUser} />
     </Header>
   );
 }
 
 export default HeaderComponent;
-
